@@ -1,0 +1,1 @@
+This is project is used to create, and track the interns(students) and their projects. Each project has no of task should be done by student to complete the project. Once the task is completed the student can put entry in this time sheet app to update the project and task status. A each students progress can be tracked using this app. This repository only having backend.
