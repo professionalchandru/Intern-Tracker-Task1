@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cors());
 
 //Todo Some middlewares here
+app.get("/", (req, res) => {
+  res.json({ message: "Working" });
+});
 app.use("/api/students", routes.students);
 app.use("/api/projects", routes.projects);
 
