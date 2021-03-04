@@ -28,4 +28,98 @@ router.post(urlConstants.createStudent, async (req, res) => {
   }
 });
 
+/**
+ * EDIT STUDENT
+ */
+
+router.put(urlConstants.editStudent, async (req, res) => {
+  try {
+    if (validateCreateStudent(req.body) === false) {
+      res.status(400).send({
+        status: "Success",
+        message: "Please Check The Inputs and Input types",
+      });
+    }
+    let result = await studentController.editStudent({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * TEMPORARLY DELETE STUDENT
+ */
+
+router.put(urlConstants.deleteStudent, async (req, res) => {
+  try {
+    let result = await studentController.tempDeleteStudent({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * RESTORE TEMPORARILY DELETED STUDENT
+ */
+
+router.put(urlConstants.restoreStudent, async (req, res) => {
+  try {
+    let result = await studentController.restoreStudent({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * PERMENANT DELETE STUDENT
+ */
+
+router.delete(urlConstants.permenantDeleteStudent, async (req, res) => {
+  try {
+    let result = await studentController.deleteStudent({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * LOGIN STUDENT USING EMAIL AND PASSWORD
+ */
+router.post(urlConstants.loginStudent, async (req, res) => {
+  try {
+    let result = await studentController.login({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
 export default router;

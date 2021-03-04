@@ -38,6 +38,5 @@ export const validateCreateStudent = ({
   ) {
     resultFlag = false;
   }
-  console.log(resultFlag);
   return resultFlag;
 };

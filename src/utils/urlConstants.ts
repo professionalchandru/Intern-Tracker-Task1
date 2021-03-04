@@ -2,7 +2,8 @@ export default {
   // Students url constants
   createStudent: "/register",
   loginStudent: "/login",
-  editStudent: "/edit",
-  deleteStudent: "/delete",
-  permenentDeleteStudent: "/permenentDelete",
+  editStudent: "/edit/:id",
+  deleteStudent: "/delete/:id",
+  restoreStudent: "/restore/:id",
+  permenantDeleteStudent: "/permenantDelete/:id",
 };
