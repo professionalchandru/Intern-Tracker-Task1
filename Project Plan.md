@@ -8,7 +8,7 @@ Project Name : Intern Tracker
 
 # Operations Needs to be done:
 
-1. CRUD operations for student profiles
+1. CRUD operations for student profiles - done
 2. CRUD operations for Project and Tasks of individual students
 3. CRUD operations fo admin (May needed in feature)
 4. Create and update task of each each student by their own
@@ -20,23 +20,23 @@ Project Name : Intern Tracker
 
 ```json
 Student_Table:{
-"_id": "Object Id",
-"name": "String",
-"email": "Email",
-"phone": "String",
-"password": "String",
-"address": "String",
-"college": "String",
-"company": "String",
-"internPeriod": "String",
-"dateOfJoining": "Date",
-"isCompleted" : "Boolean",
-"internRole": "String",
-"isDeleted": "Boolean",
-"createdAt": "Date",
-"createdBy": "String",
-"updatedAt": "Date",
-"udpatedBy": "String",
+    "_id": "Object Id",
+    "name": "String",
+    "email": "Email",
+    "phone": "String",
+    "password": "String",
+    "address": "String",
+    "college": "String",
+    "company": "String",
+    "internPeriod": "String",
+    "dateOfJoining": "Date",
+    "isCompleted" : "Boolean",
+    "internRole": "String",
+    "isDeleted": "Boolean",
+    "createdAt": "Date",
+    "createdBy": "String",
+    "updatedAt": "Date",
+    "udpatedBy": "String",
 }
 ```
 
@@ -45,34 +45,35 @@ Student_Table:{
 ```json
 Project_Table: {
 "_id": "Object Id",
-"name": "String",
-"sudentRef": "String",
-"noOfTasks": "Number",
-"noOfTasksCompleted": "Number",
-"noOfTaskRemaining": "Number",
-"Tasks": [
-{
-"name": "String",
-"estimatedCompletionTime": "String",
-"completedTime": "String",
-"totalTimeTaken": "String",
-"isCompleted": "Boolean",
-"isDeleted": "Boolean",
-"workHistory": [
-{
-"message": "String",
-"updatedAt": "Date",
-"timeSpent": "String"
-}
-]
-}
-],
-"isDeleted": "Boolean",
-"isCompleted": "Boolean",
-"createdAt": "Date",
-"createdBy": "String",
-"updatedAt": "Date",
-"updatedBy": "String"
+"projectName": "String",
+  "studentRef": "String",
+  "noOfTasks": "Number",
+  "noOfTasksCompleted": "Number",
+  "noOfTaskRemaining": "Number",
+  "Tasks": [
+    {
+      "id": "string",
+      "taskName": "String",
+      "estimatedCompletionTime": "String",
+      "completedTime": "String",
+      "totalTimeTaken": "String",
+      "isTaskCompleted": "Boolean",
+      "isTaskDeleted": "Boolean",
+      "workHistory": [
+        {
+          "message": "String",
+          "historyUpdatedAt": "Date",
+          "timeSpent": "String",
+        }
+      ]
+    }
+  ],
+  "isDeleted": "Boolean",
+  "isCompleted": "Boolean",
+  "createdAt": "Date",
+  "createdBy": "String",
+  "updatedAt": "Date",
+  "updatedBy": "String",
 }
 ```
 

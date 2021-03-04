@@ -12,7 +12,7 @@ router.post(urlConstants.createStudent, async (req, res) => {
   try {
     if (validateCreateStudent(req.body) === false) {
       res.status(400).send({
-        status: "Success",
+        status: "Failure",
         message: "Please Check The Inputs and Input types",
       });
     }
@@ -36,7 +36,7 @@ router.put(urlConstants.editStudent, async (req, res) => {
   try {
     if (validateCreateStudent(req.body) === false) {
       res.status(400).send({
-        status: "Success",
+        status: "Failure",
         message: "Please Check The Inputs and Input types",
       });
     }

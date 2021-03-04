@@ -1,6 +1,6 @@
 import utils from "../utils/common";
 import bcrypt from "bcrypt";
-import studentModel from "../models/studentModle";
+import studentModel from "../models/studentModel";
 import * as jwt from "jsonwebtoken";
 class StudentController {
   /**
@@ -118,6 +118,7 @@ class StudentController {
       throw new Error(err);
     }
   }
+
   /**
    * TEMPORARILY DELETE STUDENT PROFILE
    */
