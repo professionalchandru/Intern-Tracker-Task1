@@ -63,6 +63,7 @@ Project_Table: {
         {
           "message": "String",
           "historyUpdatedAt": "Date",
+          "isTaskCompleted": "Boolean",
           "timeSpent": "String",
         }
       ]

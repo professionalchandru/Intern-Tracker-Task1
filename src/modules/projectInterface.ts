@@ -21,11 +21,11 @@ export interface tasksInterface {
   totalTimeTaken: string;
   isTaskCompleted?: boolean;
   isTaskDeleted?: boolean;
-  workHistory: [
-    {
-      message: string;
-      historyUpdatedAt: string;
-      timeSpent: string;
-    }
-  ];
+}
+
+export interface workHistoryInterface {
+  message: string;
+  historyUpdatedAt: string;
+  isTaskCompleted: boolean;
+  timeSpent: string;
 }

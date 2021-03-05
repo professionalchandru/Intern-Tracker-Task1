@@ -4,6 +4,7 @@ import {
   validateCreateProject,
   validateEditProject,
   validateAddTask,
+  validateUpdateWorkHistory,
 } from "../schemas/projectValidation";
 import { projectController } from "../controllers/projectController";
 const router = express.Router();
@@ -80,74 +81,136 @@ router.put(urlConstants.addTask, async (req, res) => {
   }
 });
 
-// /**
-//  * TEMPORARLY DELETE STUDENT
-//  */
+/**
+ * ADD OR UPDATE WORK HISTORY OF TASKS
+ */
 
-// router.put(urlConstants.deleteStudent, async (req, res) => {
-//   try {
-//     let result = await projectController.tempDeleteProject({ req });
-//     let response = {
-//       status: result.status,
-//       message: result.message,
-//     };
-//     res.status(result.statusCode).send(response);
-//   } catch (err) {
-//     console.log(err);
-//     throw new Error(err);
-//   }
-// });
+router.put(urlConstants.updateWorkHistory, async (req, res) => {
+  try {
+    if (validateUpdateWorkHistory(req.body) === false) {
+      return res.status(400).send({
+        status: "Failure",
+        message: "Please Check The Inputs and Input types",
+      });
+    }
+    let result = await projectController.updateHistory({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    return res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
 
-// /**
-//  * RESTORE TEMPORARILY DELETED STUDENT
-//  */
+/**
+ * TEMPORARLY DELETE PROJECT
+ */
 
-// router.put(urlConstants.restoreStudent, async (req, res) => {
-//   try {
-//     let result = await projectController.restoreProject({ req });
-//     let response = {
-//       status: result.status,
-//       message: result.message,
-//     };
-//     res.status(result.statusCode).send(response);
-//   } catch (err) {
-//     console.log(err);
-//     throw new Error(err);
-//   }
-// });
+router.put(urlConstants.deleteProject, async (req, res) => {
+  try {
+    let result = await projectController.tempDeleteProject({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
 
-// /**
-//  * PERMENANT DELETE STUDENT
-//  */
+/**
+ * RESTORE TEMPORARILY DELETED PROJECT
+ */
 
-// router.delete(urlConstants.permenantDeleteStudent, async (req, res) => {
-//   try {
-//     let result = await projectController.deleteProject({ req });
-//     let response = {
-//       status: result.status,
-//       message: result.message,
-//     };
-//     res.status(result.statusCode).send(response);
-//   } catch (err) {
-//     console.log(err);
-//     throw new Error(err);
-//   }
-// });
+router.put(urlConstants.restoreProject, async (req, res) => {
+  try {
+    let result = await projectController.restoreProject({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
 
-// /**
-//  * LOGIN STUDENT USING EMAIL AND PASSWORD
-//  */
-// router.post(urlConstants.loginStudent, async (req, res) => {
-//   try {
-//     let result = await projectController.login({ req });
-//     let response = {
-//       status: result.status,
-//       message: result.message,
-//     };
-//     res.status(result.statusCode).send(response);
-//   } catch (err) {
-//     throw new Error(err);
-//   }
-// });
+/**
+ * PERMENANT DELETE PROJECT
+ */
+
+router.delete(urlConstants.permenantDeleteProject, async (req, res) => {
+  try {
+    let result = await projectController.deleteProject({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * TEMPORARLY DELETE TASK
+ */
+
+router.put(urlConstants.deleteTask, async (req, res) => {
+  try {
+    let result = await projectController.tempDeleteTask({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * RESTORE TEMPORARILY DELETED TASK
+ */
+
+router.put(urlConstants.restoreTask, async (req, res) => {
+  try {
+    let result = await projectController.restoreTask({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
+
+/**
+ * PERMENANT DELETE TASK
+ */
+
+router.put(urlConstants.permenantDeleteTask, async (req, res) => {
+  try {
+    let result = await projectController.deleteTask({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+});
 
 export default router;

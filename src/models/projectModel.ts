@@ -34,6 +34,7 @@ const projectSchema = new mongoose.Schema({
         {
           message: String,
           historyUpdatedAt: Date,
+          isTaskCompleted: Boolean,
           timeSpent: String,
         },
       ],
