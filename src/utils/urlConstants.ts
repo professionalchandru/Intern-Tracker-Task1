@@ -6,6 +6,7 @@ export default {
   deleteStudent: "/delete/:id",
   restoreStudent: "/restore/:id",
   permenantDeleteStudent: "/permenantDelete/:id",
+  getAllStudent: "/getAll",
 
   // Project url constants
   createProject: "/create",
@@ -13,6 +14,8 @@ export default {
   deleteProject: "/delete/:projectId",
   restoreProject: "/restore/:projectId",
   permenantDeleteProject: "/permenantDelete/:projectId",
+  getAllProjects: "/getAll",
+  getProjectById: "/get/:projectId",
   // updateProjectStatus: "/status/update/:projectId",
 
   // Task url constants
@@ -21,5 +24,8 @@ export default {
   deleteTask: "/:projectId/task/delete/:taskId",
   restoreTask: "/:projectId/task/restore/:taskId",
   permenantDeleteTask: "/:projectId/task/permenantDelete/:taskId",
+  getTaskById: "/:projectId/get/task/:taskId",
   // updateTaskStatus: "/:projectId/task/update/:taskId",
+
+  studentProjectDetails: "/studentProjectDetails",
 };

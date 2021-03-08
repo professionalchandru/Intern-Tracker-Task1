@@ -213,4 +213,51 @@ router.put(urlConstants.permenantDeleteTask, async (req, res) => {
   }
 });
 
+/**
+ * GET ALL PROJECT DETAILS
+ */
+router.get(urlConstants.getAllProjects, async (req, res) => {
+  try {
+    let result = await projectController.getAll({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+/**
+ * GET PROJECT DETAILS BY ID
+ */
+router.get(urlConstants.getProjectById, async (req, res) => {
+  try {
+    let result = await projectController.getById({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+/**
+ * GET TASK DETAILS BY ID
+ */
+router.get(urlConstants.getTaskById, async (req, res) => {
+  try {
+    let result = await projectController.getTaskById({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
 export default router;

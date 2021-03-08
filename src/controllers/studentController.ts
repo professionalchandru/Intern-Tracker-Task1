@@ -1,7 +1,9 @@
 import utils from "../utils/common";
 import bcrypt from "bcrypt";
 import studentModel from "../models/studentModel";
+import projectModel from "../models/projectModel";
 import * as jwt from "jsonwebtoken";
+import { sortOrder } from "../modules/common";
 class StudentController {
   /**
    * CREATE STUDENT PROFILE
@@ -336,6 +338,110 @@ class StudentController {
       });
     }
     return token;
+  }
+
+  /**
+   * GET ALL STUDENT DETAILS
+   */
+  async getAll({ req }: any) {
+    try {
+      // create sorting object
+      let sortParams = req.query.sort.split(",");
+      let obj: any = {};
+      sortParams.forEach((ele: string) => {
+        let splited = ele.split(":");
+        let key = splited[0];
+        let value = splited[1];
+        if (value === "asc") {
+          obj[key] = sortOrder.asc;
+        } else if (value === "desc") {
+          obj[key] = sortOrder.desc;
+        }
+      });
+
+      //To check existing student
+      const students = await studentModel.find({}).sort(obj);
+
+      if (!students) {
+        let response = {
+          status: "Failure",
+          statusCode: 400,
+          message: "No students found",
+        };
+        return response;
+      }
+
+      let response = {
+        status: "Success",
+        statusCode: 200,
+        message: students,
+      };
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * GET ALL STUDENT DETAILS ALONG WITH PROJECT DETAILS
+   */
+  async studentProjectDetails({ req }: any) {
+    try {
+      // create sorting object
+      let sortParams = req.query.sort.split(",");
+      let obj: any = {};
+      sortParams.forEach((ele: string) => {
+        let splited = ele.split(":");
+        let key = splited[0];
+        let value = splited[1];
+        if (value === "asc") {
+          obj[key] = sortOrder.asc;
+        } else if (value === "desc") {
+          obj[key] = sortOrder.desc;
+        }
+      });
+
+      //To check existing student
+      const students = await studentModel
+        .aggregate([
+          // {
+          //   $set: {
+          //     studentRef: {
+          //       $toObjectId: "$studentRef",
+          //     },
+          //   },
+          // },
+          {
+            $lookup: {
+              from: "projects",
+              localField: "_id",
+              foreignField: "studentRef",
+              as: "studentProjectDetails",
+            },
+          },
+        ])
+        .sort(obj);
+
+      if (!students) {
+        let response = {
+          status: "Failure",
+          statusCode: 400,
+          message: "No students found",
+        };
+        return response;
+      }
+
+      let response = {
+        status: "Success",
+        statusCode: 200,
+        message: students,
+      };
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
   }
 }
 

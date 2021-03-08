@@ -122,4 +122,35 @@ router.post(urlConstants.loginStudent, async (req, res) => {
   }
 });
 
+/**
+ * GET ALL STUDENT DETAILS
+ */
+router.get(urlConstants.getAllStudent, async (req, res) => {
+  try {
+    let result = await studentController.getAll({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
+
+/**
+ * GET ALL STUDENT DETAILS ALONG WITH PROJECT DETAILS
+ */
+router.get(urlConstants.studentProjectDetails, async (req, res) => {
+  try {
+    let result = await studentController.studentProjectDetails({ req });
+    let response = {
+      status: result.status,
+      message: result.message,
+    };
+    res.status(result.statusCode).send(response);
+  } catch (err) {
+    throw new Error(err);
+  }
+});
 export default router;

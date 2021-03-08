@@ -534,6 +534,111 @@ class ProjectController {
     }
   }
 
+  /**
+   * GET ALL PROJECT DETAILS
+   */
+
+  async getAll({ req }: any) {
+    try {
+      //To check existing project
+      const project: any = await projectModel.find({});
+      console.log(project);
+
+      if (!project) {
+        let response = {
+          status: "Failure",
+          statusCode: 400,
+          message: "No projects found",
+        };
+        return response;
+      }
+
+      let response = {
+        status: "Success",
+        statusCode: 200,
+        message: project,
+      };
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * GET PROJECT BY ID
+   */
+
+  async getById({ req }: any) {
+    try {
+      //To check existing project
+      const project: any = await projectModel.findOne({
+        _id: req.params.projectId,
+      });
+
+      if (!project) {
+        let response = {
+          status: "Failure",
+          statusCode: 400,
+          message: "No projects found",
+        };
+        return response;
+      }
+
+      let response = {
+        status: "Success",
+        statusCode: 200,
+        message: project,
+      };
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * GET TASK BY ID
+   */
+
+  async getTaskById({ req }: any) {
+    try {
+      //To check existing project
+      const project: any = await projectModel.findOne({
+        _id: req.params.projectId,
+        tasks: {
+          $elemMatch: {
+            id: req.params.taskId,
+          },
+        },
+      });
+
+      if (!project) {
+        let response = {
+          status: "Failure",
+          statusCode: 400,
+          message: "No task found",
+        };
+        return response;
+      }
+
+      let filterTask = await this.fiterTask(project, req);
+
+      let response = {
+        status: "Success",
+        statusCode: 200,
+        message: filterTask,
+      };
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+
+  /**
+   * Filter matching task by id
+   */
   async fiterTask(project: any, req: any) {
     let task = project.tasks.filter((ele: any) => {
       if (ele.id === req.params.taskId) {

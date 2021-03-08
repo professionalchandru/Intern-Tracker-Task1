@@ -9,12 +9,12 @@ Project Name : Intern Tracker
 # Operations Needs to be done:
 
 1. CRUD operations for student profiles - done
-2. CRUD operations for Project and Tasks of individual students
+2. CRUD operations for Project and Tasks of individual students - done
 3. CRUD operations fo admin (May needed in feature)
-4. Create and update task of each each student by their own
-5. Upadate ETA and work history of tasks by students
-6. Sort the students by their details in both admin and student dashboards
-7. Show the performance of students in dashboard
+4. Create and update task of each each student by their own - done
+5. Upadate ETA and work history of tasks by students - done
+6. Sort the students by their details in both admin and student dashboards - done(sorting)
+7. Show the performance of students in dashboard (only api done)
 
 # Table Structure of Student Table:
 

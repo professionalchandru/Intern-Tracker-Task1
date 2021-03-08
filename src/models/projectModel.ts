@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const projectSchema = new mongoose.Schema({
   projectName: {
@@ -8,7 +8,7 @@ const projectSchema = new mongoose.Schema({
     required: true,
   },
   studentRef: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: true,
   },
   noOfTasks: {
